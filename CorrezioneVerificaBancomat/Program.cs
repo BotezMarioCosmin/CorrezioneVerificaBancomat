@@ -8,27 +8,30 @@ namespace CorrezioneVerificaBancomat
 {
     internal class Program
     {
-        private SportelloBancomat sp;
+        private ContoCorrente cc;
+        private CartaBancomat cb;
         static void Main(string[] args)
         {
-            SportelloBancomat sp = new SportelloBancomat("mrio25", "mario", "bancabergamo", 0);
+            ContoCorrente cc = new ContoCorrente("mrio25", "mario", "bancabergamo", 0);
+            CartaBancomat cb = new CartaBancomat("mrio25_banc", "8219", cc);
 
-
+            cb.preleva(2, "1231");
+            Console.ReadKey();
         }
     }
 
-    public class SportelloBancomat
+    public class ContoCorrente
     {
         private string id; //primary key
         private string cliente;
         private string banca;
         private float saldo;
 
-        public SportelloBancomat(string id1)
+        public ContoCorrente(string id1)
         {
 
         }
-        public SportelloBancomat(string id1, string cliente1, string banca1, float saldo1)
+        public ContoCorrente(string id1, string cliente1, string banca1, float saldo1)
         {
 
         }
@@ -71,40 +74,60 @@ namespace CorrezioneVerificaBancomat
             else
                 Console.WriteLine("Saldo insufficiente");
         }
+
+        public void bonifico(ContoCorrente destinazione, float somma)
+        {
+
+
+        }
     }
 
     public class CartaBancomat
     {
         private string _id; //primary key
         private string _pin;
-        private SportelloBancomat sp;
+        private ContoCorrente cc;
 
-        public CartaBancomat(string id1, string pin1, SportelloBancomat sp1)
+        public CartaBancomat(string id1, string pin1, ContoCorrente cc)
         {
-            _id = id1;
-            _pin = pin1;
+            setContoCorrente(cc);
+            setId(id1);
+            setPin(pin1);
         }
 
+        private void setId(string id)
+        {
+            _id = id;
+        }
         public string getId()
         {
             return _id;
         }
+        private void setPin(string pin)
+        {
+            _pin = pin;
+        }
+
+        private ContoCorrente setContoCorrente(ContoCorrente conto)
+        {
+            return cc = conto;
+        }
 
         public float getSaldo()
         {
-            return sp.getSaldo();
+            return cc.getSaldo();
         }
 
         public void deposita(float somma)
         {
-            sp.deposita(somma);
+            cc.deposita(somma);
         }
 
         public void preleva(float somma, string pin)
         {
             if (pin == _pin)
             {
-                sp.preleva(somma);
+                cc.preleva(somma);
             }
             else
             {
