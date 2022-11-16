@@ -154,7 +154,7 @@ namespace CorrezioneVerificaBancomat
         private string _id; //primary key
         private string _pin;
         private ContoCorrente cc;
-        public bool bloccata = false;
+        private bool bloccata = false;
 
         public CartaBancomat(string id1, string pin1, ContoCorrente cc)
         {
@@ -218,8 +218,8 @@ namespace CorrezioneVerificaBancomat
         private string _indirizzo;
         private string _banca;
         private CartaBancomat cb;
-        public string[] arrayIdBloccati;
-        public bool stato;
+        private string[] arrayIdBloccati;
+        private bool stato;
 
         public SportelloBancomat(string id1, string indirizzo1, string banca1)
         {
