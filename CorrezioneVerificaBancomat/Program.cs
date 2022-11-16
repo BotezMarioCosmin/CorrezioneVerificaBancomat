@@ -16,11 +16,22 @@ namespace CorrezioneVerificaBancomat
         private SportelloBancomat sp;
         static void Main(string[] args)
         {
-            ContoCorrente cc = new ContoCorrente("mrio25", "mario", "bancabergamo", 0);
-            CartaBancomat cb = new CartaBancomat("mrio25_banc", "8219", cc);
+            ContoCorrente cc1 = new ContoCorrente("mrio25", "mario", "bancabergamo", 0);
+            ContoCorrente cc2 = new ContoCorrente("gvn25", "giovanni", "bancabergamo", 0);
+            CartaBancomat cb1 = new CartaBancomat("mrio25_banc", "8219", cc1);
+            CartaBancomat cb2 = new CartaBancomat("gvn_banc", "9271", cc2);
             SportelloBancomat sp = new SportelloBancomat("sprtl_01", "via roma", "bancaitalia");
 
-            //cb.preleva(2, "1231");
+            cc1.deposita(100);
+            cc1.preleva(50);
+            Console.WriteLine("Saldo: " + cc1.getSaldo());
+
+            cc2.deposita(1000);
+            cc2.preleva(2000);
+            Console.WriteLine("Saldo: " + cc2.getSaldo());
+
+            cb1.deposita(40);
+            cb2.preleva(50,"9271");
             Console.ReadKey();
         }
     }
