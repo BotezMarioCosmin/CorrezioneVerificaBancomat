@@ -23,15 +23,38 @@ namespace CorrezioneVerificaBancomat
             SportelloBancomat sp = new SportelloBancomat("sprtl_01", "via roma", "bancaitalia");
 
             cc1.deposita(100);
-            cc1.preleva(50);
+            try
+            {
+                cc1.preleva(50);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.WriteLine("Saldo: " + cc1.getSaldo());
 
             cc2.deposita(1000);
-            cc2.preleva(2000);
+            try
+            {
+                cc2.preleva(2000);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Console.WriteLine("Saldo: " + cc2.getSaldo());
 
             cb1.deposita(40);
-            cb2.preleva(50,"9271");
+
+            try
+            {
+                cb2.preleva(50, "9271");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
             Console.ReadKey();
         }
     }
@@ -101,7 +124,7 @@ namespace CorrezioneVerificaBancomat
                 _saldo += somma;
             }
             else
-                Console.WriteLine("Somma non valida");
+                throw new Exception("Somma non valida");
         }
         public void preleva(float somma)
         {
@@ -110,7 +133,7 @@ namespace CorrezioneVerificaBancomat
                 _saldo -= somma;
             }
             else
-                Console.WriteLine("Saldo insufficiente");
+                throw new Exception("Saldo insufficiente");
         }
 
         public void bonifico(ContoCorrente destinazione, float somma)
@@ -121,7 +144,7 @@ namespace CorrezioneVerificaBancomat
                 destinazione.deposita(somma);
             }
             else
-                Console.WriteLine("Saldo insufficiente");
+                throw new Exception("Saldo insufficiente");
 
         }
     }
@@ -184,7 +207,7 @@ namespace CorrezioneVerificaBancomat
             }
             else
             {
-                Console.WriteLine("Pin errato");
+                throw new Exception("Pin errato");
             }
         }
     }
